@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js" charset="utf-8"></script>
+
+	<body ng-app="main" ng-cloak class="ng-cloak">
+
+		<div ng-controller="uploader as ctrl">
+	
+			<form>
+				<label>Neues Bild hochladen</label><br>
+				<button ngf-select ng-model="ctrl.file" name="file">Auswählen</button>  {{ctrl.file.name}} <br>
+				<button ng-click="ctrl.submitUpload(ctrl.file)">Hochladen</button>
+			</form>
+		
+		</div>
+	
+	</body>
+	
+	<script src="js/recherche/ng-file-upload.min.js"></script>
+	<script src="js/recherche/main.js"></script>
+
+
+</html>
