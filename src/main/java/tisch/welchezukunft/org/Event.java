@@ -12,55 +12,103 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
-    private String ueberschrift;
+    private String title;
     
-    private String inhalt;
+    private String content;
     
-    private Integer jahr;
+    private Integer year;
     
     private Integer workshopId;
+    
+    private String imageUrl;
 
+	
+    
+    
 	public Integer getId() {
 		return id;
 	}
+
+
+
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getUeberschrift() {
-		return ueberschrift;
+
+
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setUeberschrift(String ueberschrift) {
-		this.ueberschrift = ueberschrift;
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getInhalt() {
-		return inhalt;
+
+
+
+	public String getContent() {
+		return content;
 	}
 
-	public void setInhalt(String inhalt) {
-		this.inhalt = inhalt;
+
+
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Integer getJahr() {
-		return jahr;
+
+
+
+	public Integer getYear() {
+		return year;
 	}
 
-	public void setJahr(Integer jahr) {
-		this.jahr = jahr;
+
+
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
+
+
+
 
 	public Integer getWorkshopId() {
 		return workshopId;
 	}
 
+
+
+
 	public void setWorkshopId(Integer workshopId) {
 		this.workshopId = workshopId;
 	}
-	
-	
+
+
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+
+
 	@Override
     public boolean equals(Object o) {
         return this.id.equals(((Event)o).getId());

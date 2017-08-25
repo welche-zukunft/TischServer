@@ -1,8 +1,8 @@
-angular.module('main', ['ngFileUpload']).controller('uploader', ['$scope', 'Upload', '$http', function($scope, Upload, $http) {
+angular.module('recherche', ['ngFileUpload']).controller('uploader', ['$scope', 'Upload', '$http', function($scope, Upload, $http) {
 	var self = this;
 	self.submitUpload = submitUpload;
 	
-	console.log("uploader controller started ");
+	console.log("Started recherche app");
 	
     
     self.upload = function (file) {
@@ -23,15 +23,12 @@ angular.module('main', ['ngFileUpload']).controller('uploader', ['$scope', 'Uplo
     
     
     function submitUpload(file) {
-    	console.log("submit file ...");	
+    	console.log("submit image to upload ...");	
     	self.upload(file);
     };
 
     
-    
-
-
-    
+       
     
     
 }]);
