@@ -10,6 +10,10 @@ import javax.persistence.Id;
 @Entity 
 public class Event {
 	
+	
+	enum Status {NEWEVENT, PLACED, PENDING, DELETED}
+	
+	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
@@ -18,6 +22,8 @@ public class Event {
     
     private String content;
     
+    private String notes;
+    
     private Integer year;
     
     private Integer workshopId;
@@ -25,6 +31,11 @@ public class Event {
     private String imageName;
     
     private Date timestamp;
+    
+    private boolean load;
+    
+    
+    
 
 	
     
@@ -152,6 +163,40 @@ public class Event {
 		this.timestamp = timestamp;
 	}
 
+		
+
+
+	public String getNotes() {
+		return notes;
+	}
+
+
+
+
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+
+
+
+
+	public boolean isLoad() {
+		return load;
+	}
+
+
+
+
+
+
+	public void setLoad(boolean load) {
+		this.load = load;
+	}
+
 
 
 
@@ -164,6 +209,7 @@ public class Event {
     
 
     
+	
     
 }
 
