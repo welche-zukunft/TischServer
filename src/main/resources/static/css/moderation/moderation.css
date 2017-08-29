@@ -37,7 +37,7 @@ select#wunsch_ws {
 }
 
 textarea {
-	min-height: 48vh;
+	min-height: 24vh;
 }
 
 div.column {
@@ -122,5 +122,8 @@ ul {
 	white-space: nowrap;
 	overflow: hidden;
 }
-
+input.checkbox, label.checkbox {
+	display: inline-block;
+	width: auto;
+}
 
