@@ -16,7 +16,7 @@
 .formwrapper{
 	display:inline-block;
 	text-align : left;
-	min-width : 1100px;
+	width : 100%;
 }
 
 .column img {
@@ -50,20 +50,25 @@ div.column {
 }
 
 #left {
-	width: 100px;
+	width: calc(15% - 2% - 2px);
 }
-
+#left li {
+	margin-bottom: 2ch;
+}
 #center-l {
-	width: 275px;
+	width: calc(25% - 2% - 2px);
 }
 
 #center-r {
-	width: 350px;
+	width: calc(30% - 2% - 2px);
 }
 
 #right {
-	width: 125px;
+	width: calc(30% - 2% - 2px);
 	overflow: auto;
+	margin-left: 0;
+	padding-left: 1%;
+	border-left: solid thin;
 }
 
 #events {
@@ -112,6 +117,10 @@ ul {
 
 #right ul li{
 	cursor : pointer;
+}
+#right ul li, #left ul li {
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 
