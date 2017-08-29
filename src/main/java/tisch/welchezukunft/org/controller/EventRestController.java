@@ -86,12 +86,12 @@ public class EventRestController {
 		
 		event.setLoadFlag(LoadFlag.LOAD);
 		
-		int vertexId = (int) eventRepository.count() + 1;
-		event.setVertexId(vertexId);
 
 		if (event.getId() == null) {
 			LocalDateTime now = LocalDateTime.now();
 			event.setTimestamp(java.sql.Timestamp.valueOf(now));
+			int vertexId = (int) eventRepository.count() + 1;
+			event.setVertexId(vertexId);
 		}
 		
 		eventRepository.save(event);
