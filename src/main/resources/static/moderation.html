@@ -35,13 +35,6 @@
 	<div ng-controller="eventmanager as ctrl" class="wrapper">
 
 		<form class="formwrapper">
-			
-			<label>Workshop</label> <br>
-			
-			<select ng-model="ctrl.currentEvent.workshopId"
-				ng-options="workshop.value as workshop.name for workshop in ctrl.workshops">
-				WORKSHOP
-			</select>
 
 			<div id="buttons">
 				<button ng-click="ctrl.createNewEvent()">New</button>
@@ -50,13 +43,19 @@
 			<!--buttons-->
 
 			<div id="container">
+
 				<div id="left" class="column">
-					<label>Jahr</label> <input ng-model="ctrl.currentEvent.year"
-						name="jahr" id="jahr">
+					<label>Workshop</label> <br>
+
+					<ul>
+						<li ng-repeat="workshop in ctrl.workshops">{{workshop.name}}</li>
+					</ul>
 				</div>
 				<!--left-->
 
 				<div id="center-l" class="column">
+					<label>Jahr</label> <input ng-model="ctrl.currentEvent.year"
+						name="jahr" id="jahr">
 					<label>Headline</label> <input ng-model="ctrl.currentEvent.title"
 						name="headline" id="headline"> <label>Content</label>
 					<textarea ng-model="ctrl.currentEvent.content" name="content"></textarea>
