@@ -16,7 +16,7 @@ public class Image {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 	
-	String imageUrl;
+	String imageName;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z")
 	Date timestamp;
@@ -25,16 +25,12 @@ public class Image {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getImageName() {
+		return imageName;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 	public Date getTimestamp() {
@@ -44,6 +40,11 @@ public class Image {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	
 	

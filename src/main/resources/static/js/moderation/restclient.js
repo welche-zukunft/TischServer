@@ -29,7 +29,7 @@ angular.module('moderation').factory('EventExchangeService', ['$http', '$q', '$l
     
     function getAllImages() {
         var deferred = $q.defer();
-        $http.post(REST_SERVICE_URI + "/getimages/", event)
+        $http.post(REST_SERVICE_URI + "/getimages/")
             .then(
             function (response) {
                 console.log('Success on getting images');
@@ -46,7 +46,7 @@ angular.module('moderation').factory('EventExchangeService', ['$http', '$q', '$l
     
     function getAllEvents() {
         var deferred = $q.defer();
-        $http.post(REST_SERVICE_URI + "/getevents/", event)
+        $http.post(REST_SERVICE_URI + "/getevents/")
             .then(
             function (response) {
                 console.log('Success on getting events');

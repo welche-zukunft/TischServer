@@ -46,7 +46,7 @@ public class EventRestController {
 		storageService.store(file);
 
 		Image uploadedImage = new Image();
-		uploadedImage.setImageUrl("http://localhost/uploads/images/" + file.getOriginalFilename());
+		uploadedImage.setImageName(file.getOriginalFilename());
 
 		LocalDateTime now = LocalDateTime.now();
 		uploadedImage.setTimestamp(java.sql.Timestamp.valueOf(now));
@@ -83,7 +83,13 @@ public class EventRestController {
 	public RestWrapperDTO submitCurrentEvent(@RequestBody Event event) {
 		System.out.println("##### Entered Event Submission Controller Method ####");
 
+		if (event.getId() == null) {
+			LocalDateTime now = LocalDateTime.now();
+			event.setTimestamp(java.sql.Timestamp.valueOf(now));
+		}
+		
 		eventRepository.save(event);
+		
 
 		RestWrapperDTO wrapperDTO = new RestWrapperDTO();
 		wrapperDTO.setSuccess(true);

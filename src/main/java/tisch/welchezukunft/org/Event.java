@@ -1,5 +1,7 @@
 package tisch.welchezukunft.org;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,14 +22,20 @@ public class Event {
     
     private Integer workshopId;
     
-    private String imageUrl;
+    private String imageName;
+    
+    private Date timestamp;
 
 	
     
     
+
+
 	public Integer getId() {
 		return id;
 	}
+
+
 
 
 
@@ -39,9 +47,13 @@ public class Event {
 
 
 
+
+
 	public String getTitle() {
 		return title;
 	}
+
+
 
 
 
@@ -53,9 +65,13 @@ public class Event {
 
 
 
+
+
 	public String getContent() {
 		return content;
 	}
+
+
 
 
 
@@ -67,9 +83,13 @@ public class Event {
 
 
 
+
+
 	public Integer getYear() {
 		return year;
 	}
+
+
 
 
 
@@ -81,9 +101,13 @@ public class Event {
 
 
 
+
+
 	public Integer getWorkshopId() {
 		return workshopId;
 	}
+
+
 
 
 
@@ -95,16 +119,40 @@ public class Event {
 
 
 
-	public String getImageUrl() {
-		return imageUrl;
+
+
+	public String getImageName() {
+		return imageName;
 	}
 
 
 
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
+
+
+
+
+
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+
+
+
+
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
 
 
 

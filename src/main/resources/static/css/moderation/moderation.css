@@ -1,67 +1,117 @@
-.column input, .column label, .column div, .column textarea, .column select, .column button {
-			display: block;
-			width: 100%;
-			margin-top: 2ch;
-		}
-		.column img {
-			max-width: 100%;
-			max-height: 200px;
-		}
-		/*.column select {
+.column input, .column label, .column div, .column textarea, .column select,
+	.column button {
+	display: block;
+	width: 100%;
+	margin-top: 2ch;
+}
+
+.titel{
+     text-align: center;
+}
+
+.wrapper{
+	text-align: center;
+}
+
+.formwrapper{
+	display:inline-block;
+	text-align : left;
+	min-width : 1100px;
+}
+
+.column img {
+	max-width: 100%;
+	max-height: 200px;
+}
+/*.column select {
 			margin-top:0;
 		}*/
-		.column label:first-child {
-			margin-top: 0;
-		}
-		select#wunsch_ws {
-			display: block;
-			width: 100px;
-			position: absolute;
-		}
-		textarea {
-			min-height: 48vh;
-		}
-		div.column {
-			/*border: solid thin gray;*/
-			display: inline-block;
-			vertical-align: top;
-			margin: 1%;
-			height: 88vh;
-			margin-top: 2ch;
-		}
-		#left {
-			width: 100px;
-		}
-		#center-l {
-			width: 275px;
-		}
-		#center-r {
-			width: 350px;
-		}
-		#right {
-			width: 125px;
-			overflow: auto;
-			border: solid thin;
-		}
-		#image-select {
-			max-height: 54vh;
-			min-height: 300px;
-			overflow-y: auto;
-			border: solid thin;
-		}
-		#image-select img {
-			width: 48%;
-		}
-		#container {
-		}
-		#buttons {
-			text-align: center;
-			padding-bottom: 1ch;
-			border-bottom: solid thin;
-		}
-		#buttons button {
-			margin: 0 1ch 0 1ch;
-		}
-		ul {
-  			list-style-type: none;
-		}
+.column label:first-child {
+	margin-top: 0;
+}
+
+select#wunsch_ws {
+	display: block;
+	width: 100px;
+	position: absolute;
+}
+
+textarea {
+	min-height: 48vh;
+}
+
+div.column {
+	/*border: solid thin gray;*/
+	display: inline-block;
+	vertical-align: top;
+	margin: 1%;
+	height: 88vh;
+	margin-top: 2ch;
+}
+
+#left {
+	width: 100px;
+}
+
+#center-l {
+	width: 275px;
+}
+
+#center-r {
+	width: 350px;
+}
+
+#right {
+	width: 125px;
+	overflow: auto;
+}
+
+#events {
+	border: solid thin;
+}
+
+#image-select {
+	max-height: 54vh;
+	min-height: 300px;
+	overflow-y: auto;
+	border: solid thin;
+}
+
+#image-select img {
+	width: 48%;
+}
+
+#container {
+	
+}
+
+#buttons {
+	text-align: center;
+	padding-bottom: 1ch;
+	border-bottom: solid thin;
+}
+
+#buttons button {
+	margin: 0 1ch 0 1ch;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	list-style-type: none;
+}
+
+
+.selected {
+    background-color : #F0F8FF;
+}
+
+.unselected {
+    background-color :'#F0F8FF';
+}
+
+#right ul li{
+	cursor : pointer;
+}
+
+
