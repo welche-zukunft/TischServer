@@ -38,9 +38,9 @@ public class Event {
 	@Enumerated(EnumType.STRING)
     private LoadFlag loadFlag;
 	
-	private Float xValue;
+	private Float xValue = 0;
 	
-	private Float yValue;
+	private Float yValue = 0;
   
 
 	public Integer getId() {
