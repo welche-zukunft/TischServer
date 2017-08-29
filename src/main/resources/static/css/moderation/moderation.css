@@ -118,6 +118,12 @@ ul {
 #right ul li{
 	cursor : pointer;
 }
+
+#left ul li{
+	cursor : pointer;
+}
+
+
 #right ul li, #left ul li {
 	white-space: nowrap;
 	overflow: hidden;

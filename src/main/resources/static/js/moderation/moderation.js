@@ -18,28 +18,31 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		// workshop list
 		
 		self.workshops = [
-				{ value: 1, name: 'Fiskalische und andere Götterdämmerungen' }, 
-				{ value: 2, name: 'Patient Zero - der Indexpatient Deutsche Bank' },
+				{ value: 1, name: 'Götterdämmerungen' }, 
+				{ value: 2, name: 'Patient Zero' },
 				{ value: 3, name: 'Armageddon' },
-				{ value: 4, name: 'Der Weg zur Hölle ist mit guten Vorsätzen gepflastert' },
-				{ value: 5, name: 'Recht und Gesetz - Staatsverluste?!' },
-				{ value: 6, name: 'Risikomanagement - Guter Rat – Notvorrat' },
+				{ value: 4, name: 'Der Weg zur Hölle' },
+				{ value: 5, name: 'Recht und Gesetz' },
+				{ value: 6, name: 'Risikomanagement' },
 				{ value: 7, name: 'Energy transitions' },
-				{ value: 8, name: 'Wetter - Eine neue Normalität' },
-				{ value: 9, name: 'Geopolitics - Intersections' },
-				{ value: 10, name: 'Arbeit - Zukunft ohne Arbeitgeber?' },
-				{ value: 11, name: 'Elite &amp; Demokratie - Rolle rückwärts' },
-				{ value: 12, name: 'Agriculture - Coffee shortage and other inconveniences' }		
+				{ value: 8, name: 'Wetter' },
+				{ value: 9, name: 'Geopolitics' },
+				{ value: 10, name: 'Arbeit' },
+				{ value: 11, name: 'Elite' },
+				{ value: 12, name: 'Agriculture' },		
+				{ value: 13, name: 'Plenum'}
 		];
 		
 		//	current event to edit
 			
 		self.currentEvent = {
 				id	:	null,
-				title	:	"-",
-				content	:	"-",
+				title	:	"",
+				content	:	"",
+				notes : "",
 				year	:	"",
 				workshopId	:	0,
+				status : "NEWEVENT",
 				imageName	:	null
 		}
 		
@@ -55,11 +58,18 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		
 		//	LISTENER METHODS FOR CLICK HANDLING
 		
+		self.editNewEvent = editNewEvent;
 		self.submitCurrentEvent = submitCurrentEvent;
 		self.createNewEvent = createNewEvent;
 		self.update = update;
 		self.setImageForCurrentEvent = setImageForCurrentEvent;
 		self.setCurrentEvent = setCurrentEvent;
+		self.setWorkshopForCurrentEvent = setWorkshopForCurrentEvent;
+		
+		
+		function editNewEvent(){
+			clearCurrentEvent();
+		}
 		
 		
 		function submitCurrentEvent(){
@@ -115,6 +125,11 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 			console.log(self.currentEvent.imageName);
 		}
 		
+		function setWorkshopForCurrentEvent(id){
+			console.log("Set workshop for current Event ")
+			self.currentEvent.workshopId = id;
+		}
+		
 		
 		function getAllEvents(){
 			console.log("Update Images...");
@@ -141,6 +156,8 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		
 		
 		
+		
+		
 		//	UTIL FUNCTIONS
 		
 		
@@ -148,11 +165,13 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 			console.log("Clear current event...");
 			self.currentEvent = {
 					id	:	null,
-					title	:	"-",
-					content	:	"-",
+					title	:	"",
+					content	:	"",
+					notes : "",
 					year	:	"",
 					workshopId	:	0,
-					imageUrl	:	null
+					status : "NEWEVENT",
+					imageName	:	null
 			}
 			if(!$scope.$$phase) {
 	    		$scope.$apply();
@@ -160,7 +179,7 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		}
 		
 		
-		self.resolveImageUrl = resolveImageUrl
+		self.resolveImageUrl = resolveImageUrl;
 		
 		
 		function resolveImageUrl(imageName){

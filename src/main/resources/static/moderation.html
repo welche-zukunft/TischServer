@@ -37,7 +37,7 @@
 		<form class="formwrapper">
 
 			<div id="buttons">
-				<button ng-click="ctrl.createNewEvent()">New</button>
+				<button ng-click="ctrl.editNewEvent()">New</button>
 				<button ng-click="ctrl.submitCurrentEvent()">Send</button>
 			</div>
 			<!--buttons-->
@@ -48,7 +48,11 @@
 					<label>Workshop</label> <br>
 
 					<ul>
-						<li ng-repeat="workshop in ctrl.workshops">{{workshop.name}}</li>
+						<li ng-repeat="workshop in ctrl.workshops" 
+							ng-click="ctrl.setWorkshopForCurrentEvent(workshop.value)" 
+							ng-class="{selected : workshop.value == ctrl.currentEvent.workshopId}">
+							{{workshop.name}}
+						</li>
 					</ul>
 				</div>
 				<!--left-->
@@ -61,7 +65,7 @@
 					<textarea ng-model="ctrl.currentEvent.content" name="content"></textarea>
 					<label>Notes</label>
 					<textarea ng-model="ctrl.currentEvent.notes" name="notes"></textarea>
-					<input name="status" class="checkbox" type="checkbox" ng-click="">
+					<input name="status" class="checkbox" type="checkbox" ng-model="ctrl.currentEvent.status" ng-true-value="'DELETED'" ng-false-value="'NEWEVENT'">
 					<label class="checkbox">Don't show on table</label>
 				</div>
 				<!--center-l-->

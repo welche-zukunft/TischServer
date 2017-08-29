@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tisch.welchezukunft.org.Event;
+import tisch.welchezukunft.org.LoadFlag;
 import tisch.welchezukunft.org.EventRepository;
 import tisch.welchezukunft.org.Image;
 import tisch.welchezukunft.org.ImageRepository;
@@ -82,6 +83,8 @@ public class EventRestController {
 	@PostMapping("/submitcurrentevent")
 	public RestWrapperDTO submitCurrentEvent(@RequestBody Event event) {
 		System.out.println("##### Entered Event Submission Controller Method ####");
+		
+		event.setLoadFlag(LoadFlag.LOAD);
 
 		if (event.getId() == null) {
 			LocalDateTime now = LocalDateTime.now();

@@ -3,6 +3,8 @@ package tisch.welchezukunft.org;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,9 +12,7 @@ import javax.persistence.Id;
 @Entity 
 public class Event {
 	
-	
-	enum Status {NEWEVENT, PLACED, PENDING, DELETED}
-	
+			
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,21 +32,20 @@ public class Event {
     
     private Date timestamp;
     
-    private boolean load;
-    
-    
-    
+	@Enumerated(EnumType.STRING)
+    private Status status;
 
+	@Enumerated(EnumType.STRING)
+    private LoadFlag loadFlag;
 	
-    
-    
-
+	private Float xValue;
+	
+	private Float yValue;
+  
 
 	public Integer getId() {
 		return id;
 	}
-
-
 
 
 
@@ -58,13 +57,9 @@ public class Event {
 
 
 
-
-
 	public String getTitle() {
 		return title;
 	}
-
-
 
 
 
@@ -76,13 +71,9 @@ public class Event {
 
 
 
-
-
 	public String getContent() {
 		return content;
 	}
-
-
 
 
 
@@ -94,83 +85,9 @@ public class Event {
 
 
 
-
-
-	public Integer getYear() {
-		return year;
-	}
-
-
-
-
-
-
-	public void setYear(Integer year) {
-		this.year = year;
-	}
-
-
-
-
-
-
-	public Integer getWorkshopId() {
-		return workshopId;
-	}
-
-
-
-
-
-
-	public void setWorkshopId(Integer workshopId) {
-		this.workshopId = workshopId;
-	}
-
-
-
-
-
-
-	public String getImageName() {
-		return imageName;
-	}
-
-
-
-
-
-
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
-	}
-
-
-
-
-
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-
-
-
-
-
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
-
-		
-
-
 	public String getNotes() {
 		return notes;
 	}
-
-
 
 
 
@@ -182,22 +99,117 @@ public class Event {
 
 
 
-
-
-	public boolean isLoad() {
-		return load;
+	public Integer getYear() {
+		return year;
 	}
 
 
 
 
-
-
-	public void setLoad(boolean load) {
-		this.load = load;
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 
+
+
+	public Integer getWorkshopId() {
+		return workshopId;
+	}
+
+
+
+
+	public void setWorkshopId(Integer workshopId) {
+		this.workshopId = workshopId;
+	}
+
+
+
+
+	public String getImageName() {
+		return imageName;
+	}
+
+
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+
+
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+
+
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	
+	
+
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	
+
+
+
+	public LoadFlag getLoadFlag() {
+		return loadFlag;
+	}
+
+
+
+
+	public void setLoadFlag(LoadFlag loadFlag) {
+		this.loadFlag = loadFlag;
+	}
+
+
+	
+	
+	public Float getxValue() {
+		return xValue;
+	}
+
+
+
+
+	public void setxValue(Float xValue) {
+		this.xValue = xValue;
+	}
+
+
+
+
+	public Float getyValue() {
+		return yValue;
+	}
+
+
+
+
+	public void setyValue(Float yValue) {
+		this.yValue = yValue;
+	}
 
 
 
