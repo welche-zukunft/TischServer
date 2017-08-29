@@ -38,9 +38,11 @@ public class Event {
 	@Enumerated(EnumType.STRING)
     private LoadFlag loadFlag;
 	
-	private Float xValue = 0;
+	private Float xValue = (float) 0;
 	
-	private Float yValue = 0;
+	private Float yValue = (float) 0;
+	
+	private Integer vertexId;
   
 
 	public Integer getId() {
@@ -209,6 +211,23 @@ public class Event {
 
 	public void setyValue(Float yValue) {
 		this.yValue = yValue;
+	}
+
+
+	
+	
+	
+
+
+	public Integer getVertexId() {
+		return vertexId;
+	}
+
+
+
+
+	public void setVertexId(Integer vertexId) {
+		this.vertexId = vertexId;
 	}
 
 

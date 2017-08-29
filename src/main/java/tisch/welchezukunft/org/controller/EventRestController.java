@@ -85,6 +85,9 @@ public class EventRestController {
 		System.out.println("##### Entered Event Submission Controller Method ####");
 		
 		event.setLoadFlag(LoadFlag.LOAD);
+		
+		int vertexId = (int) eventRepository.count() + 1;
+		event.setVertexId(vertexId);
 
 		if (event.getId() == null) {
 			LocalDateTime now = LocalDateTime.now();
