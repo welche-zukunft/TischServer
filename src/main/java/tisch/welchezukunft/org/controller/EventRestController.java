@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,7 +39,11 @@ public class EventRestController {
 	@Autowired
 	public EventRestController(StorageService storageService) {
 		this.storageService = storageService;
-		
+	}
+	
+	
+	@PostConstruct
+	public void init() {
 		for (int i = 1; i<21; i++) {
 			Image initImage = new Image();
 
@@ -48,8 +54,12 @@ public class EventRestController {
 
 			imageRepository.save(initImage);
 		}
-
 	}
+	
+	
+	
+	
+	
 
 	@PostMapping("/upload/")
 	public RestWrapperDTO handleFileUpload(@RequestParam("file") MultipartFile file,
