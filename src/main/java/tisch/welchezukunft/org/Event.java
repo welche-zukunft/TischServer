@@ -2,6 +2,7 @@ package tisch.welchezukunft.org;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,10 +19,13 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
+	@Column(length = 60) 
     private String title;
     
+	@Column(length = 4000) 
     private String content;
     
+	@Column(length = 4000) 
     private String notes;
     
     private Integer year;

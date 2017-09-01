@@ -108,7 +108,10 @@ ul {
 
 
 .selected {
-    background-color : #F0F8FF;
+    background-color : #2964c4;
+    list-style-position:inside;
+    border: 1px solid black;
+    color: white;
 }
 
 .unselected {

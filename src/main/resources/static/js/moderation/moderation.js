@@ -1,4 +1,4 @@
-angular.module('moderation', []).controller('eventmanager', ['EventExchangeService' ,'$scope', '$http', '$location', '$window', 
+angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventExchangeService' ,'$scope', '$http', '$location', '$window', 
 	
 	function(EventExchangeService, $scope, $http, $location, $window) {
 	
@@ -60,7 +60,6 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		
 		self.editNewEvent = editNewEvent;
 		self.submitCurrentEvent = submitCurrentEvent;
-		self.createNewEvent = createNewEvent;
 		self.update = update;
 		self.setImageForCurrentEvent = setImageForCurrentEvent;
 		self.setCurrentEvent = setCurrentEvent;
@@ -68,18 +67,19 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		
 		
 		function editNewEvent(){
+			console.log("Edit new Event");
 			clearCurrentEvent();
+			getAllEvents();
 		}
 		
 		
 		function submitCurrentEvent(){
 			console.log("Submit current Event : " + self.currentEvent);
-						
-			if (self.currentEvent.workshopId == 0){
-				$window.alert("Bitte einen Workshop auswählen!");
+			
+			if (!self.eventform.$valid || self.currentEvent.workshopId == 0){
+				console.log("Input Data is not valid!");
 				return;
 			}
-
 			
 			//	delegate rest communication   		
 			EventExchangeService.submitCurrentEvent(self.currentEvent)
@@ -95,10 +95,6 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 	        );
 		}
 		
-		
-		function createNewEvent(){
-			console.log("Creating new Event...");
-		}
 		
 		
 		
@@ -163,6 +159,11 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 		
 		function clearCurrentEvent(){
 			console.log("Clear current event...");
+			self.eventform.$setPristine(); 
+
+			
+			console.log("Event form submitted ? " + self.eventform.$submitted);
+			
 			self.currentEvent = {
 					id	:	null,
 					title	:	"",
@@ -190,6 +191,11 @@ angular.module('moderation', []).controller('eventmanager', ['EventExchangeServi
 				return null;
 			}
 		}
+		
+		
+		//	Input Field Pattern
+		
+		self.onlyNumbers = /^\d+$/;
 		
 	
 }]);

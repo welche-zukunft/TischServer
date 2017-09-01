@@ -17,6 +17,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"
 	charset="utf-8"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.js" charset="utf-8"></script>
 
 
 <title>Tisch-Moderation</title>
@@ -34,11 +35,11 @@
 
 	<div ng-controller="eventmanager as ctrl" class="wrapper">
 
-		<form class="formwrapper">
+		<form class="formwrapper" name="ctrl.eventform" novalidate>
 
 			<div id="buttons">
-				<button ng-click="ctrl.editNewEvent()">New</button>
-				<button ng-click="ctrl.submitCurrentEvent()">Send</button>
+				<button type="button" ng-click="ctrl.editNewEvent()" formnovalidate>Neues Event ersetellen</button>
+				<button type="submit" ng-click="ctrl.submitCurrentEvent()" value="E">Event speichern</button>
 			</div>
 			<!--buttons-->
 
@@ -54,24 +55,47 @@
 							{{workshop.name}}
 						</li>
 					</ul>
+					
+					<div ng-if='ctrl.eventform.$submitted && ctrl.currentEvent.workshopId===0'>
+        				    <p><span style="color:red">Bitte einen Workshop auswählen.</span></p>
+    				</div>
 				</div>
 				<!--left-->
 
 				<div id="center-l" class="column">
-					<label>Jahr</label> <input ng-model="ctrl.currentEvent.year"
-						name="jahr" id="jahr">
-					<label>Headline</label> <input ng-model="ctrl.currentEvent.title"
-						name="headline" id="headline"> <label>Content</label>
+					<label>Jahr</label> <input name="year" ng-model="ctrl.currentEvent.year"
+						name="jahr" id="jahr" ng-pattern="ctrl.onlyNumbers" ng-minlength="4" ng-maxlength="4" >
+						
+						<div ng-messages="ctrl.eventform.year.$error">
+						    <p ng-message="pattern"><span style="color:red">Kein gültiges Jahr.</span></p>
+        					<p ng-message="minlength"><span style="color:red">Das Jahr muss mindestens 4 Stellen haben.</span></p>
+        					<p ng-message="maxlength"><span style="color:red">Das Jahr darf maximal 4 Stellen haben.</span></p>
+    					</div>
+						
+				
+					<label>Überschrift</label> <input ng-model="ctrl.currentEvent.title"
+						name="headline" id="headline" required ng-maxlength="60"> 
+						
+						<div ng-messages="ctrl.eventform.headline.$error" ng-if='ctrl.eventform.$submitted'>
+        				    <p ng-message="required"><span style="color:red">Bitte eine Überschrift angeben.</span></p>
+    					</div>
+    					
+    					<div ng-messages="ctrl.eventform.headline.$error">
+        					<p ng-message="maxlength"><span style="color:red">Es sind maximal 60 Zeichen erlaubt.</span></p>
+    					</div>
+						
+						
+					<label>Inhalt</label>
 					<textarea ng-model="ctrl.currentEvent.content" name="content"></textarea>
-					<label>Notes</label>
+					<label>Notizen</label>
 					<textarea ng-model="ctrl.currentEvent.notes" name="notes"></textarea>
 					<input name="status" class="checkbox" type="checkbox" ng-model="ctrl.currentEvent.status" ng-true-value="'DELETED'" ng-false-value="'NEWEVENT'">
-					<label class="checkbox">Don't show on table</label>
+					<label class="checkbox">Nicht auf dem Tisch anzeigen</label>
 				</div>
 				<!--center-l-->
 
 				<div id="center-r" class="column">
-					<label>aktuelles Bild</label> <img
+					<label>Aktuelles Bild</label> <img
 						ng-show="ctrl.currentEvent.imageName"
 						ng-src="{{ctrl.resolveImageUrl(ctrl.currentEvent.imageName)}}"
 						alt=""> <label>Bilder</label>
@@ -83,7 +107,7 @@
 
 					</div>
 					<!--image-select-->
-					<button ng-click="ctrl.update()">Update</button>
+					<button type="button" ng-click="ctrl.update()">Update</button>
 				</div>
 				<!--center-r-->
 
