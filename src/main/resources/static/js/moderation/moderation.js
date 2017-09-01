@@ -28,9 +28,10 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 				{ value: 8, name: 'Wetter' },
 				{ value: 9, name: 'Geopolitics' },
 				{ value: 10, name: 'Arbeit' },
-				{ value: 11, name: 'Elite' },
-				{ value: 12, name: 'Agriculture' },		
-				{ value: 13, name: 'Plenum'}
+				{ value: 11, name: 'Identitäten'},
+				{ value: 12, name: 'Elite' },
+				{ value: 13, name: 'Agriculture' },		
+				{ value: 14, name: 'Plenum'}
 		];
 		
 		//	current event to edit
