@@ -37,6 +37,18 @@ public class EventRestController {
 	@Autowired
 	public EventRestController(StorageService storageService) {
 		this.storageService = storageService;
+		
+		for (int i = 1; i<21; i++) {
+			Image initImage = new Image();
+
+			LocalDateTime now = LocalDateTime.now();
+
+			initImage.setImageName(new Integer(i).toString() + ".jpg");
+			initImage.setTimestamp(java.sql.Timestamp.valueOf(now));
+
+			imageRepository.save(initImage);
+		}
+
 	}
 
 	@PostMapping("/upload/")
