@@ -34,7 +34,7 @@ public class Event {
     
     private String imageName;
     
-    private Date timestamp;
+    private Long timestamp;
     
 	@Enumerated(EnumType.STRING)
     private Status status;
@@ -147,19 +147,17 @@ public class Event {
 
 
 
-	public Date getTimestamp() {
+	public Long getTimestamp() {
 		return timestamp;
 	}
 
 
 
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	
-	
 
 
 

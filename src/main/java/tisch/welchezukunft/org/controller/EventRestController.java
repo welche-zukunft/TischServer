@@ -110,8 +110,8 @@ public class EventRestController {
 		
 
 		if (event.getId() == null) {
-			LocalDateTime now = LocalDateTime.now();
-			event.setTimestamp(java.sql.Timestamp.valueOf(now));
+			long millis = System.currentTimeMillis();
+			event.setTimestamp(millis);
 			int vertexId = (int) eventRepository.count() + 1;
 			event.setVertexId(vertexId);
 		}
