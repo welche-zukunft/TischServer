@@ -90,7 +90,9 @@
 					<label>Notizen</label>
 					<textarea ng-model="ctrl.currentEvent.notes" name="notes"></textarea>
 					<input name="status" class="checkbox" type="checkbox" ng-model="ctrl.currentEvent.status" ng-true-value="'DELETED'" ng-false-value="'NEWEVENT'">
-					<label class="checkbox">Nicht auf dem Tisch anzeigen</label>
+					<label class="checkbox">Nicht auf dem Tisch anzeigen</label><br>
+					<label class="checkbox">Status : {{ctrl.currentEvent.status}}</label>
+					
 				</div>
 				<!--center-l-->
 
@@ -98,7 +100,13 @@
 					<label>Aktuelles Bild</label> <img
 						ng-show="ctrl.currentEvent.imageName"
 						ng-src="{{ctrl.resolveImageUrl(ctrl.currentEvent.imageName)}}"
-						alt=""> <label>Bilder</label>
+						alt=""> 
+						
+					<div ng-if='!(ctrl.currentEvent.imageName===null)'>
+					<button type="button" ng-click="ctrl.deleteImage()">Bild löschen</button>
+					</div>
+					
+					<label>Bilder</label>
 					<div id="image-select">
 
 						<img ng-repeat="image in ctrl.images"

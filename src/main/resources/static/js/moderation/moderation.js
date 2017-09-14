@@ -65,7 +65,8 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 		self.setImageForCurrentEvent = setImageForCurrentEvent;
 		self.setCurrentEvent = setCurrentEvent;
 		self.setWorkshopForCurrentEvent = setWorkshopForCurrentEvent;
-		
+		self.deleteImage = deleteImage;
+
 		
 		function editNewEvent(){
 			console.log("Edit new Event");
@@ -149,6 +150,10 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 			console.log("Set current Event...");
 			self.currentEvent=event;
 	
+		}
+		
+		function deleteImage(){
+			self.currentEvent.imageName=null;
 		}
 		
 		
