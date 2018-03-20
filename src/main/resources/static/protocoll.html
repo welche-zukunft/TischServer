@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="alexh" />
+<meta name="description" content="Tisch-Moderation." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"
+	charset="utf-8"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.js"
+	charset="utf-8"></script>
+
+
+<title>Tisch-Protokoll</title>
+<link rel="stylesheet" type="text/css"
+	href="css/moderation/moderation.css">
+</head>
+
+
+
+<body ng-app="protocoll" ng-cloak class="ng-cloak">
+
+
+	<h1 class="titel">Moderation</h1>
+
+
+	<div ng-controller="protocollmanager as ctrl" class="wrapper">
+
+
+		<table>
+			<tr>
+
+				<form class="formwrapper" name="ctrl.protocollform" ng-submit="ctrl.submitSentence()" novalidate>
+					<td><input ng-model="ctrl.sentence.content" name="headline"
+						id="headline" required ng-maxlength="60" style="width:100%">
+						
+						<input type="submit">
+						
+						<div ng-messages="ctrl.protocollform.headline.$error"
+							ng-if='ctrl.protocollform.$submitted'>
+							<p ng-message="required">
+								<span style="color: red">Bitte eine Überschrift angeben.</span>
+							</p>
+						</div>
+
+						<div ng-messages="ctrl.protocollform.headline.$error">
+							<p ng-message="maxlength">
+								<span style="color: red">Es sind maximal 60 Zeichen
+									erlaubt.</span>
+							</p>
+						</div></td>
+				</form>
+
+			</tr>
+		</table>
+	</div>
+</body>
+
+
+
+<script src="js/protocoll/protocoll.js"></script>
+<script src="js/protocoll/restclient.js"></script>
+
+
+</html>
