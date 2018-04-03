@@ -17,7 +17,7 @@ public class Sentence {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-	@Column(length = 60) 
+	@Column(length = 256) 
     private String content;
     
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z")

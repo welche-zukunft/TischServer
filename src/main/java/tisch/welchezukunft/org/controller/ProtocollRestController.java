@@ -19,19 +19,36 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tisch.welchezukunft.org.Event;
 import tisch.welchezukunft.org.LoadFlag;
+import tisch.welchezukunft.org.Pipeline;
 import tisch.welchezukunft.org.Sentence;
 import tisch.welchezukunft.org.controller.EventRestController.RestWrapperDTO;
 import tisch.welchezukunft.org.SentenceRepository;
 import tisch.welchezukunft.org.Image;
 import tisch.welchezukunft.org.ImageRepository;
+import tisch.welchezukunft.org.Keyword;
+import tisch.welchezukunft.org.KeywordRepository;
 import tisch.welchezukunft.org.storage.StorageFileNotFoundException;
 import tisch.welchezukunft.org.storage.StorageService;
+
 
 @RestController
 public class ProtocollRestController {
 
 	@Autowired
 	SentenceRepository sentenceRepository;
+	
+
+	@Autowired
+	KeywordRepository keywordRepository;
+
+	Pipeline pipe;
+	
+	
+	@PostConstruct
+	public void init() {
+		pipe = new Pipeline();
+	}
+	
 	
 	
 	@PostMapping("/submitsentence")
@@ -40,14 +57,22 @@ public class ProtocollRestController {
 		
 		LocalDateTime now = LocalDateTime.now();
 		sentence.setTimestamp(java.sql.Timestamp.valueOf(now));
+		
+		List<Keyword> keywords = pipe.doSentenceTest(sentence.getContent());
 
-		sentenceRepository.save(sentence);
+		Sentence savedSentence = sentenceRepository.save(sentence);
+		
+		for (Keyword keyword : keywords) {
+			keyword.setSentence(savedSentence);
+			keywordRepository.save(keyword);
+		}
 		
 		RestWrapperDTO wrapperDTO = new RestWrapperDTO();
 		wrapperDTO.setSuccess(true);
 		return wrapperDTO;
 
 	}
+	
 	
 	
 	

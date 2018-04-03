@@ -32,38 +32,36 @@
 <body ng-app="protocoll" ng-cloak class="ng-cloak">
 
 
-	<h1 class="titel">Moderation</h1>
+	<h1 class="titel">Protokoll</h1>
 
 
 	<div ng-controller="protocollmanager as ctrl" class="wrapper">
 
+					<form class="formwrapper" name="ctrl.protocollform"
+						ng-submit="ctrl.submitSentence()" novalidate
+						style="width: 1000px; margin: 0 auto;" align="center">
 
-		<table>
-			<tr>
+						<td><input ng-model="ctrl.sentence.content" name="sentence"
+							id="headline" required ng-maxlength="256"
+							style="font-size: 12pt; width: 1000px;" align="middle"> 
+							<br>
+							<input type="submit" value="Absenden" style="font-size: 12pt; width: 1000px;" align="middle">
 
-				<form class="formwrapper" name="ctrl.protocollform" ng-submit="ctrl.submitSentence()" novalidate>
-					<td><input ng-model="ctrl.sentence.content" name="headline"
-						id="headline" required ng-maxlength="60" style="width:100%">
-						
-						<input type="submit">
-						
-						<div ng-messages="ctrl.protocollform.headline.$error"
-							ng-if='ctrl.protocollform.$submitted'>
-							<p ng-message="required">
-								<span style="color: red">Bitte eine Überschrift angeben.</span>
-							</p>
-						</div>
+							<div ng-messages="ctrl.protocollform.sentence.$error"
+								ng-if='ctrl.protocollform.$submitted'>
+								<p ng-message="required">
+									<span style="color: red">Bitte einen Satz eingeben.</span>
+								</p>
+							</div>
 
-						<div ng-messages="ctrl.protocollform.headline.$error">
-							<p ng-message="maxlength">
-								<span style="color: red">Es sind maximal 60 Zeichen
-									erlaubt.</span>
-							</p>
-						</div></td>
-				</form>
+							<div ng-messages="ctrl.protocollform.sentence.$error">
+								<p ng-message="maxlength">
+									<span style="color: red">Es sind maximal 256 Zeichen
+										erlaubt.</span>
+								</p>
+							</div></td>
+					</form>
 
-			</tr>
-		</table>
 	</div>
 </body>
 

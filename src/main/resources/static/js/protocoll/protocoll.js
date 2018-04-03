@@ -22,6 +22,7 @@ angular.module('protocoll', ['ngMessages']).controller('protocollmanager', ['Pro
 		
 		function submitSentence(){
 			console.log("Submit current sentence : " + self.sentence);
+			console.log(self.sentence.content);
 			
 			if (!self.protocollform.$valid || self.sentence == ""){
 				console.log("Input Data is not valid!");
