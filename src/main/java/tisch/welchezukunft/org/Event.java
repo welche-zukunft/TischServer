@@ -30,6 +30,10 @@ public class Event {
     
     private Integer year;
     
+    private String month;
+    
+    private Integer day;
+    
     private Integer workshopId;
     
     private String imageName;
@@ -239,6 +243,34 @@ public class Event {
     public boolean equals(Object o) {
         return this.id.equals(((Event)o).getId());
     }
+
+
+
+
+	public String getMonth() {
+		return month;
+	}
+
+
+
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+
+
+
+	public Integer getDay() {
+		return day;
+	}
+
+
+
+
+	public void setDay(Integer day) {
+		this.day = day;
+	}
     
 
     

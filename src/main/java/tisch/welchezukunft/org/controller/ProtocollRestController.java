@@ -59,9 +59,11 @@ public class ProtocollRestController {
 		sentence.setTimestamp(java.sql.Timestamp.valueOf(now));
 		
 		List<Keyword> keywords = pipe.doSentenceTest(sentence.getContent());
+		
+		sentence.setNumKeywords(keywords.size());
 
 		Sentence savedSentence = sentenceRepository.save(sentence);
-		
+				
 		for (Keyword keyword : keywords) {
 			keyword.setSentence(savedSentence);
 			keywordRepository.save(keyword);

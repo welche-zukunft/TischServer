@@ -22,9 +22,9 @@
 	charset="utf-8"></script>
 
 
-<title>Tisch-Protokoll</title>
+<title>Table-Protocoll</title>
 <link rel="stylesheet" type="text/css"
-	href="css/moderation/moderation.css">
+	href="css/protocoll/protocoll.css">
 </head>
 
 
@@ -32,36 +32,61 @@
 <body ng-app="protocoll" ng-cloak class="ng-cloak">
 
 
-	<h1 class="titel">Protokoll</h1>
+	<h1 class="titel">Protocoll</h1>
 
 
 	<div ng-controller="protocollmanager as ctrl" class="wrapper">
 
-					<form class="formwrapper" name="ctrl.protocollform"
-						ng-submit="ctrl.submitSentence()" novalidate
-						style="width: 1000px; margin: 0 auto;" align="center">
+		<div id="container">
 
-						<td><input ng-model="ctrl.sentence.content" name="sentence"
-							id="headline" required ng-maxlength="256"
-							style="font-size: 12pt; width: 1000px;" align="middle"> 
-							<br>
-							<input type="submit" value="Absenden" style="font-size: 12pt; width: 1000px;" align="middle">
+			<div id="left" class="column">
+				<label>Workshop</label> <br>
+			</div>
+			<!--left-->
 
-							<div ng-messages="ctrl.protocollform.sentence.$error"
-								ng-if='ctrl.protocollform.$submitted'>
-								<p ng-message="required">
-									<span style="color: red">Bitte einen Satz eingeben.</span>
-								</p>
-							</div>
+			<ul class='selection'>
+				<li ng-repeat="workshop in ctrl.workshops"
+					ng-click="ctrl.setWorkshopForCurrentSentence(workshop.value)"
+					ng-class="{selected : workshop.value == ctrl.sentence.workshopId}">
+					{{workshop.name}}</li>
+			</ul>
 
-							<div ng-messages="ctrl.protocollform.sentence.$error">
-								<p ng-message="maxlength">
-									<span style="color: red">Es sind maximal 256 Zeichen
-										erlaubt.</span>
-								</p>
-							</div></td>
-					</form>
+			<div
+				ng-if='ctrl.protocollform.$submitted && ctrl.sentence.workshopId===0'>
+				<p>
+					<span style="color: red">Please select a workshop.</span>
+				</p>
+			</div>
 
+
+			<div id="right" class="column">
+
+				<form class="formwrapper" name="ctrl.protocollform"
+					ng-submit="ctrl.submitSentence()" novalidate
+					style="width: 100%; margin: 0 auto;" align="center">
+
+					<td><input ng-model="ctrl.sentence.content" name="sentence"
+						id="headline" required ng-maxlength="256"
+						style="font-size: 12pt; width: 100%;" align="middle"> <br>
+						<input type="submit" value="Send"
+						style="font-size: 12pt; width: 100%;" align="middle">
+
+						<div ng-messages="ctrl.protocollform.sentence.$error"
+							ng-if='ctrl.emptySentenceError'>
+							<p ng-message="required">
+								<span style="color: red">Please enter a sentence.</span>
+							</p>
+						</div>
+
+						<div ng-messages="ctrl.protocollform.sentence.$error">
+							<p ng-message="maxlength">
+								<span style="color: red">Only 256 characters allowed.</span>
+							</p>
+						</div></td>
+				</form>
+			</div>
+
+		</div>
 	</div>
 </body>
 

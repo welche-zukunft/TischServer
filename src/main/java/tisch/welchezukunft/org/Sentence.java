@@ -19,7 +19,11 @@ public class Sentence {
     
 	@Column(length = 256) 
     private String content;
-    
+	
+	private Integer workshopId;
+	
+	private Integer numKeywords;
+	    
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss a z")
 	Date timestamp;
 
@@ -45,9 +49,22 @@ public class Sentence {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
-	}    
+	}
 
-	
-	
-	
+	public Integer getWorkshopId() {
+		return workshopId;
+	}
+
+	public void setWorkshopId(Integer workshopId) {
+		this.workshopId = workshopId;
+	}
+
+	public Integer getNumKeywords() {
+		return numKeywords;
+	}
+
+	public void setNumKeywords(Integer numKeywords) {
+		this.numKeywords = numKeywords;
+	}
+
 }

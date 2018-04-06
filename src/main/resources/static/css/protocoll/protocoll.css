@@ -5,6 +5,11 @@
 	margin-top: 2ch;
 }
 
+.selection{
+	text-align: left !important;
+	margin-left: 10px;
+}
+
 .titel{
      text-align: center;
 }
@@ -17,10 +22,6 @@
 	display:inline-block;
 	text-align : left;
 	width : 100%;
-}
-
-.dateSelect{
-	width:33% !important; 
 }
 
 .column img {
@@ -54,21 +55,14 @@ div.column {
 }
 
 #left {
-	width: calc(15% - 2% - 2px);
+	width: calc(45% - 2% - 2px);
 }
 #left li {
 	margin-bottom: 2ch;
 }
-#center-l {
-	width: calc(25% - 2% - 2px);
-}
-
-#center-r {
-	width: calc(30% - 2% - 2px);
-}
 
 #right {
-	width: calc(30% - 2% - 2px);
+	width: calc(55% - 2% - 2px);
 	overflow: auto;
 	margin-left: 0;
 	padding-left: 1%;

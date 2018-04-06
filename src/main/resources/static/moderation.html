@@ -63,8 +63,20 @@
 				<!--left-->
 
 				<div id="center-l" class="column">
-					<label>Jahr</label> <input name="year" ng-model="ctrl.currentEvent.year"
-						name="jahr" id="jahr" ng-pattern="ctrl.onlyNumbers" ng-minlength="4" ng-maxlength="4" >
+					<label>Jahr</label> 
+						    <select name="repeatSelect" class="dateSelect" ng-model="ctrl.currentEvent.year"
+						    ng-options="year for year in ctrl.years">
+    						</select>
+							<select name="repeatSelect" class="dateSelect" ng-model="ctrl.currentEvent.month"
+							ng-options="month for month in ctrl.months">
+    						</select>
+    						<select name="repeatSelect" class="dateSelect" ng-model="ctrl.currentEvent.day"
+    						ng-options="day for day in ctrl.days">
+    						</select>
+					
+					
+					<!--<input name="year" ng-model="ctrl.currentEvent.year"
+						name="jahr" id="jahr" ng-pattern="ctrl.onlyNumbers" ng-minlength="4" ng-maxlength="4" > -->
 						
 						<div ng-messages="ctrl.eventform.year.$error">
 						    <p ng-message="pattern"><span style="color:red">Kein gültiges Jahr.</span></p>

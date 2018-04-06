@@ -18,21 +18,23 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 		// workshop list
 		
 		self.workshops = [
-				{ value: 1, name: 'Götterdämmerungen' }, 
-				{ value: 2, name: 'Patient Zero' },
-				{ value: 3, name: 'Armageddon' },
-				{ value: 4, name: 'Der Weg zur Hölle' },
-				{ value: 5, name: 'Recht und Gesetz' },
-				{ value: 6, name: 'Risikomanagement' },
-				{ value: 7, name: 'Energy transitions' },
-				{ value: 8, name: 'Wetter' },
-				{ value: 9, name: 'Geopolitics' },
-				{ value: 10, name: 'Arbeit' },
-				{ value: 11, name: 'Identitäten'},
-				{ value: 12, name: 'Elite' },
-				{ value: 13, name: 'Agriculture' },		
-				{ value: 14, name: 'Plenum'}
-		];
+				{ value: 1, name: 'Pavlina Tcherneva' }, 
+				{ value: 2, name: 'Harald Schumann' },
+				{ value: 3, name: 'Cho Khong(UK)' },
+				{ value: 4, name: 'Jürg Müller(Switzerland)' },
+				{ value: 5, name: 'Eyvandur Gunnarsson (Iceland)' },
+				{ value: 6, name: 'Evan Liaras (Greece)' },
+				{ value: 7, name: 'José Soeiro(Portugal)' },
+				{ value: 8, name: 'Isabel Feichtner (European law)' },
+				{ value: 9, name: 'German law by Kai von Lewinski (German Law)' },
+				{ value: 10, name: 'Otto Steinmetz (Banks)' },
+				{ value: 11, name: 'Cornelia Dahaim (global workforce)'},
+				{ value: 12, name: 'Joseph Vogl (eternal critic)' },
+				{ value: 13, name: 'Ariella Helfgott' },		
+				{ value: 14, name: 'Ulrike Hermann (Moderation)'},
+				{ value: 15, name: 'Volker Heise (Moderation) '}
+			];
+		
 		
 		//	current event to edit
 			
@@ -42,6 +44,8 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 				content	:	"",
 				notes : "",
 				year	:	"",
+				month   :   0,
+				day     :   0,
 				workshopId	:	0,
 				status : "NEWEVENT",
 				imageName	:	null
@@ -148,8 +152,11 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 		
 		function setCurrentEvent(event){
 			console.log("Set current Event...");
+			console.log(event);
 			self.currentEvent=event;
-	
+			if(!$scope.$$phase) {
+	    		$scope.$apply();
+			}
 		}
 		
 		function deleteImage(){
@@ -176,6 +183,8 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 					content	:	"",
 					notes : "",
 					year	:	"",
+					month   : 0,
+					day     : 0,
 					workshopId	:	0,
 					status : "NEWEVENT",
 					imageName	:	null
@@ -202,6 +211,15 @@ angular.module('moderation', ['ngMessages']).controller('eventmanager', ['EventE
 		//	Input Field Pattern
 		
 		self.onlyNumbers = /^\d+$/;
+		
+		
+		//  calendar data 
+		
+		self.months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+		self.years = [2007, 2008, 2009, 2010, 2011, 2012];
+		self.days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+		
+		
 		
 	
 }]);
