@@ -1,9 +1,11 @@
 package tisch.welchezukunft.org.controller;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
@@ -19,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tisch.welchezukunft.org.Event;
 import tisch.welchezukunft.org.LoadFlag;
+import tisch.welchezukunft.org.Sentence;
+import tisch.welchezukunft.org.Status;
 import tisch.welchezukunft.org.EventRepository;
 import tisch.welchezukunft.org.Image;
 import tisch.welchezukunft.org.ImageRepository;
@@ -42,6 +46,20 @@ public class EventRestController {
 	}
 	
 	
+	protected String getSaltString(int length) {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < length) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+	
+
 	@PostConstruct
 	public void init() {
 		for (int i = 1; i<21; i++) {
@@ -54,6 +72,28 @@ public class EventRestController {
 
 			imageRepository.save(initImage);
 		}
+		
+		
+		//   TEST DATA        TEST DATA        TEST DATA      //
+
+		/*for (int i = 0; i<500; i++) {
+			Event event = new Event();
+			event.setVertexId(i);
+			event.setLoadFlag(LoadFlag.NOLOAD);
+			event.setContent(getSaltString(200));
+			event.setTitle(getSaltString(40));
+			event.setDay(10);
+			event.setMonth("April");
+			event.setYear(2018);
+			event.setyValue(-1 + (float)(2 * Math.random()));
+			event.setxValue(-8000 + (float) (16000 * Math.random()));
+			event.setWorkshopId(1 + ( (int) (13 * Math.random()) ));
+			event.setStatus(Status.PLACED);
+			event.setTimestamp((long)20);
+			
+			eventRepository.save(event);
+		}*/
+
 	}
 	
 	

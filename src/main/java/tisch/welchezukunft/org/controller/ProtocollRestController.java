@@ -1,9 +1,11 @@
 package tisch.welchezukunft.org.controller;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
@@ -44,9 +46,47 @@ public class ProtocollRestController {
 	Pipeline pipe;
 	
 	
+	protected String getSaltString(int length) {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < length) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+	
 	@PostConstruct
 	public void init() {
 		pipe = new Pipeline();
+		
+		long offset = Timestamp.valueOf("2018-01-01 12:00:00").getTime();
+		long end = Timestamp.valueOf("2018-01-01 12:10:00").getTime();
+		long diff = end - offset + 1;
+		
+		/*for (int i = 0; i<4500; i++) {
+			Sentence sentence = new Sentence();
+			sentence.setContent(getSaltString(100));
+			Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));			
+			sentence.setTimestamp(rand);
+			
+			
+			sentence.setWorkshopId( 1 + ((int) (Math.random() * 13)));
+			sentence.setNumKeywords(5);
+			
+			sentenceRepository.save(sentence);
+		}
+		
+		for (int i = 0; i<9000; i++) {
+			Keyword keyword = new Keyword();
+			keyword.setKeyword(getSaltString(15));
+			keyword.setKeyindex(5);
+			keyword.setSentence(sentenceRepository.findOne( (long) (Math.random() * 4499)));
+			keywordRepository.save(keyword);
+		}*/
 	}
 	
 	

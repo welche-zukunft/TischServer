@@ -20,7 +20,8 @@
 }
 
 .dateSelect{
-	width:33% !important; 
+	width:30% !important; 
+    display:inline-block !important;
 }
 
 .column img {

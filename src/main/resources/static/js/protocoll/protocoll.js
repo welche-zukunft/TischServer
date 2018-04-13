@@ -54,7 +54,7 @@ angular.module('protocoll', ['ngMessages']).controller('protocollmanager', ['Pro
 			}
 			
 			console.log("Submit current sentence : " + self.sentence.content);
-			if (self.sentence.content.slice(-1) != '.'){
+			if (self.sentence.content.slice(-1) != '.' || self.sentence.content.slice(-1) != '?' || self.sentence.content.slice(-1) != '!' ){
 				self.sentence.content = self.sentence.content.concat('.');
 				console.log('append . to sentence ' + self.sentence.content);
 			}
