@@ -63,11 +63,14 @@ public class ProtocollRestController {
 	public void init() {
 		pipe = new Pipeline();
 		
-		long offset = Timestamp.valueOf("2018-01-01 12:00:00").getTime();
+		
+		//   TEST DATA        TEST DATA        TEST DATA      //
+		
+		/*long offset = Timestamp.valueOf("2018-01-01 12:00:00").getTime();
 		long end = Timestamp.valueOf("2018-01-01 12:10:00").getTime();
 		long diff = end - offset + 1;
 		
-		/*for (int i = 0; i<4500; i++) {
+		for (int i = 0; i<4500; i++) {
 			Sentence sentence = new Sentence();
 			sentence.setContent(getSaltString(100));
 			Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));			
