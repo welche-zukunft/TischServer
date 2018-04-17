@@ -65,10 +65,11 @@ public class Pipeline{
         GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
         GrammaticalStructure gs = gsf.newGrammaticalStructure(sentenceTree);
         Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();
-        //System.out.println("typedDependencies: "+ gs.typedDependenciesCollapsed()); 
+        System.out.println("typedDependencies: "+ gs.typedDependenciesCollapsed()); 
 
         //sort out only compounts and nouns
         List<wordRel> positions = new ArrayList<wordRel>();
+        List<wordPick> pickedWords = new ArrayList<wordPick>();
         for (Iterator<TypedDependency> it = tdl.iterator(); it.hasNext();) {
             TypedDependency s = it.next(); 
             if(s.reln().toString() == "det" || s.reln().toString() == "compound" || s.reln().toString() == "amod" ) {
@@ -77,6 +78,13 @@ public class Pipeline{
             	///System.out.println("store: " + s.gov().index() + s.dep().index() + s.gov().originalText() + s.dep().originalText());
             	positions.add(new wordRel(s.gov().index(),s.dep().index(),s.gov().originalText(),s.dep().originalText()));
             }
+            if(s.reln().toString() == "nsubj") {
+            	pickedWords.add(new wordPick(s.dep().index(),s.dep().originalText()));
+            }
+            if(s.reln().toString() == "nmod:to") {
+            	pickedWords.add(new wordPick(s.dep().index(),s.dep().originalText()));
+            }
+            
         }
         //recombine lists
         for(int i = 0; i < positions.size(); i++) {
@@ -101,8 +109,11 @@ public class Pipeline{
 	        		}
 	        	}
         	}
+	
         	Map<Integer,String> wordpartsSorted = new TreeMap<Integer,String>(wordparts);
        		List<String> result2 = new ArrayList(wordpartsSorted.values());
+       		
+   
        		String output = result2.stream().map( n -> n.toString() ).collect( Collectors.joining( " " ) );
         	System.out.println(i + ": " + output );	
         	Keyword keyword = new Keyword();
@@ -110,7 +121,17 @@ public class Pipeline{
         	keyword.setKeyindex(i);
         	
         	result.add(keyword);
-        	}      	
+        	}
+        
+        int currSize = result.size();
+        for(int i = 0; i < pickedWords.size(); i++) {
+        	Keyword keyword = new Keyword();
+        	String output = pickedWords.get(i).currWord;
+        	keyword.setKeyword(output);
+        	keyword.setKeyindex(currSize + i);
+        	result.add(keyword);
+        
+        }
         }      
         System.out.println("-------------------");
         return result;
@@ -118,7 +139,6 @@ public class Pipeline{
 
     
     class wordRel {
-    	
     	int currPos;
     	int relPos;
     	String currWord;
@@ -130,7 +150,17 @@ public class Pipeline{
     		this.currWord = currWord;
     		this.relWord = relWord;
     	}
+    }
+    
+    class wordPick{
+    	int currPos;
+    	String currWord;
     	
+    	public wordPick(int curr, String currWord) {
+    		this.currPos = curr;
+    		this.currWord = currWord;
+    	}
     	
     }
+    
 }
