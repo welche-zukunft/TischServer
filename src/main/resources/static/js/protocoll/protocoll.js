@@ -53,16 +53,18 @@ angular.module('protocoll', ['ngMessages']).controller('protocollmanager', ['Pro
 				return;
 			}
 			
+			if (!self.protocollform.$valid || self.sentence == ""){
+				console.log("Input Data is not valid!");
+				return;
+			}	
+			
 			console.log("Submit current sentence : " + self.sentence.content);
 			if (self.sentence.content.slice(-1) != '.' || self.sentence.content.slice(-1) != '?' || self.sentence.content.slice(-1) != '!' ){
 				self.sentence.content = self.sentence.content.concat('.');
 				console.log('append . to sentence ' + self.sentence.content);
 			}
 			
-			if (!self.protocollform.$valid || self.sentence == ""){
-				console.log("Input Data is not valid!");
-				return;
-			}
+			
 			
 			//	delegate rest communication   		
 			ProtocollService.submitSentence(self.sentence)
