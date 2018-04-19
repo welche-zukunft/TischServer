@@ -39,7 +39,7 @@ public class Pipeline{
 	    
 	    List<Keyword> result = new ArrayList<Keyword>();
 	    
-	    System.out.println(text);
+	    //System.out.println(text);
 	    
 	    // create an empty Annotation just with the given text
 	    Annotation document = new Annotation(text);
@@ -65,7 +65,7 @@ public class Pipeline{
         GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
         GrammaticalStructure gs = gsf.newGrammaticalStructure(sentenceTree);
         Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();
-        System.out.println("typedDependencies: "+ gs.typedDependenciesCollapsed()); 
+        //System.out.println("typedDependencies: "+ gs.typedDependenciesCollapsed()); 
 
         //sort out only compounts and nouns
         List<wordRel> positions = new ArrayList<wordRel>();
@@ -114,7 +114,12 @@ public class Pipeline{
        		List<String> result2 = new ArrayList(wordpartsSorted.values());
        		
    
-       		String output = result2.stream().map( n -> n.toString() ).collect( Collectors.joining( " " ) );
+       		String output = result2
+       				.stream()
+       				.map( n -> n.toString() )
+       				.filter(n -> (n.equals("a") || n.equalsIgnoreCase("the") || n.equalsIgnoreCase("these") || n.equalsIgnoreCase("other") || n.equalsIgnoreCase("this") || n.equalsIgnoreCase("an") || n.equalsIgnoreCase("that")) == false)
+       				.collect( Collectors.joining( " " ) );
+       		
         	System.out.println(i + ": " + output );	
         	Keyword keyword = new Keyword();
         	keyword.setKeyword(output);
@@ -127,6 +132,14 @@ public class Pipeline{
         for(int i = 0; i < pickedWords.size(); i++) {
         	Keyword keyword = new Keyword();
         	String output = pickedWords.get(i).currWord;
+        	if(output.equals("a") || output.equalsIgnoreCase("the") || output.equalsIgnoreCase("this") || output.equalsIgnoreCase("an") || output.equalsIgnoreCase("that") || output.equalsIgnoreCase("you") || output.equalsIgnoreCase("we") || output.equalsIgnoreCase("I") || output.equalsIgnoreCase("which") || output.equalsIgnoreCase("they")|| output.equalsIgnoreCase("it")|| output.equalsIgnoreCase("he")|| output.equalsIgnoreCase("who")|| output.equalsIgnoreCase("she")|| output.equalsIgnoreCase("those")) {
+        		continue;
+        	}
+        	
+        	if(result.stream().filter(k -> k.getKeyword().contains(output) == true).findAny().isPresent()) {
+        		continue;
+        	}
+        	
         	keyword.setKeyword(output);
         	keyword.setKeyindex(currSize + i);
         	result.add(keyword);
